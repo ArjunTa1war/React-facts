@@ -1,17 +1,25 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import './index.css';
-import Header from "./Header";
-import Footer from "./footer";
-import MainContent from "./maincontent";
+import Navbar from "./Header"
+import MainContent from "./maincontent"
+import './index.css'
 
-function Page() {
+export default function App() {
+    const [darkMode,setDarkMode] = React.useState(true);
+
+    function toggleDarkMode(){
+        setDarkMode(prevMode => !prevMode);
+    }
+
     return (
-        <div>
-            <Header />
-            <MainContent />
+        <div className="container">
+            <Navbar 
+            darkMode = {darkMode}
+            toggleDarkMode = {toggleDarkMode}
+            />
+            <MainContent darkMode = {darkMode} />
         </div>
     )
 }
 
-ReactDOM.render(<Page />, document.getElementById("root"))
+ReactDOM.render(<App />, document.getElementById("root"))
